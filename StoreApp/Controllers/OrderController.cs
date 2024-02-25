@@ -47,12 +47,11 @@ namespace StoreApp.Controllers
             if (order.PaymentType == PaymentType.Card)
             {
                 var redirectUrl = _stripeService.CreatePayment(order.ProductOrders, order.Id);
-                Response.Headers.Add("Location", redirectUrl);
 
-                return Ok();
+                return Redirect(redirectUrl);
             }
 
-            return Ok();
+            return Ok(order.Id);
         }
     }
 }
